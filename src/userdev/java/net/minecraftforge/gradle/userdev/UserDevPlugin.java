@@ -106,7 +106,7 @@ public class UserDevPlugin implements Plugin<Project> {
         for (String cfg : new String[] {"compile", "implementation"}) {
             Configuration c = project.getConfigurations().findByName(cfg);
             if (c != null)
-                c.extendsFrom(minecraft);
+                c.extendsFrom(minecraft1);
         }
 
         //Let gradle handle the downloading by giving it a configuration to dl. We'll focus on applying mappings to it.
@@ -237,11 +237,11 @@ public class UserDevPlugin implements Plugin<Project> {
                 {
                     if (MinecraftUserRepo.CHANGING_USERDEV)
                         ext.setChanging(true);
-                    minecraft.resolutionStrategy(strat -> {
+                    minecraft1.resolutionStrategy(strat -> {
                         strat.cacheChangingModulesFor(10, TimeUnit.SECONDS);
                     });
                 }
-                minecraft.getDependencies().add(ext);
+                minecraft1.getDependencies().add(ext);
             }
 
             project.getRepositories().maven(e -> {
@@ -278,7 +278,7 @@ public class UserDevPlugin implements Plugin<Project> {
             project.getRepositories().mavenCentral(); //Needed for MCP Deps
             if (mcrepo == null)
                 throw new IllegalStateException("Missing 'minecraft' dependency entry.");
-            mcrepo.validate(minecraft, extension.getRuns().getAsMap(), extractNatives.get(), createSrgToMcp.get()); //This will set the MC_VERSION property.
+            mcrepo.validate(minecraft1, extension.getRuns().getAsMap(), extractNatives.get(), createSrgToMcp.get()); //This will set the MC_VERSION property.
 
             String mcVer = (String) project.getExtensions().getExtraProperties().get("MC_VERSION");
             String mcpVer = (String) project.getExtensions().getExtraProperties().get("MCP_VERSION");
