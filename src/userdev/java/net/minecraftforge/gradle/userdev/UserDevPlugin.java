@@ -125,7 +125,6 @@ public class UserDevPlugin implements Plugin<Project> {
         TaskProvider<GenerateSRG> createMcpToSrg = project.getTasks().register("createMcpToSrg", GenerateSRG.class);
         TaskProvider<DownloadMCMeta> downloadMCMeta = project.getTasks().register("downloadMCMeta", DownloadMCMeta.class);
         TaskProvider<ExtractNatives> extractNatives = project.getTasks().register("extractNatives", ExtractNatives.class);
-        TaskProvider<DownloadAssets> downloadAssets = project.getTasks().register("downloadAssets", DownloadAssets.class);
         TaskProvider<DefaultTask> hideLicense = project.getTasks().register(MojangLicenseHelper.HIDE_LICENSE, DefaultTask.class);
         TaskProvider<DefaultTask> showLicense = project.getTasks().register(MojangLicenseHelper.SHOW_LICENSE, DefaultTask.class);
 
@@ -166,10 +165,6 @@ public class UserDevPlugin implements Plugin<Project> {
             task.dependsOn(downloadMCMeta.get());
             task.setMeta(downloadMCMeta.get().getOutput());
             task.setOutput(nativesFolder);
-        });
-        downloadAssets.configure(task -> {
-            task.dependsOn(downloadMCMeta.get());
-            task.setMeta(downloadMCMeta.get().getOutput());
         });
 
         final boolean doingUpdate = project.hasProperty("UPDATE_MAPPINGS");
@@ -283,7 +278,7 @@ public class UserDevPlugin implements Plugin<Project> {
             project.getRepositories().mavenCentral(); //Needed for MCP Deps
             if (mcrepo == null)
                 throw new IllegalStateException("Missing 'minecraft' dependency entry.");
-            mcrepo.validate(minecraft, extension.getRuns().getAsMap(), extractNatives.get(), downloadAssets.get(), createSrgToMcp.get()); //This will set the MC_VERSION property.
+            mcrepo.validate(minecraft, extension.getRuns().getAsMap(), extractNatives.get(), createSrgToMcp.get()); //This will set the MC_VERSION property.
 
             String mcVer = (String) project.getExtensions().getExtraProperties().get("MC_VERSION");
             String mcpVer = (String) project.getExtensions().getExtraProperties().get("MCP_VERSION");
@@ -314,7 +309,7 @@ public class UserDevPlugin implements Plugin<Project> {
             final String finalAssetIndex = assetIndex;
 
             extension.getRuns().forEach(runConfig -> runConfig.token("asset_index", finalAssetIndex));
-            Utils.createRunConfigTasks(extension, extractNatives.get(), downloadAssets.get(), createSrgToMcp.get());
+            Utils.createRunConfigTasks(extension, extractNatives.get(), createSrgToMcp.get());
         });
     }
 
