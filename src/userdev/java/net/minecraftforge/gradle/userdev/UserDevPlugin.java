@@ -55,7 +55,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class UserDevPlugin implements Plugin<Project> {
-    private static String MINECRAFT = "minecraft";
+    private static String MINECRAFT = "minecraft1";
     public static String OBF = "__obfuscated";
 
     @Override
