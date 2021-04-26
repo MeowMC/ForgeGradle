@@ -222,7 +222,7 @@ public class UserDevPlugin implements Plugin<Project> {
             MinecraftUserRepo mcrepo = null;
             DeobfuscatingRepo deobfrepo = null;
 
-            DependencySet deps = minecraft.getDependencies();
+            DependencySet deps = minecraft1.getDependencies();
             for (Dependency dep : new ArrayList<>(deps)) {
                 if (!(dep instanceof ExternalModuleDependency))
                     throw new IllegalArgumentException("minecraft dependency must be a maven dependency.");
