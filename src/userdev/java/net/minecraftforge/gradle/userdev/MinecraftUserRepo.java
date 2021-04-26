@@ -175,7 +175,7 @@ public class MinecraftUserRepo extends BaseRepo {
         return project.file("build/fg_cache/");
     }
 
-    public void validate(Configuration cfg, Map<String, RunConfig> runs, ExtractNatives extractNatives, DownloadAssets downloadAssets, GenerateSRG createSrgToMcp) {
+    public void validate(Configuration cfg, Map<String, RunConfig> runs, ExtractNatives extractNatives GenerateSRG createSrgToMcp) {
         getParents();
         if (mcp == null)
             throw new IllegalStateException("Invalid minecraft dependency: " + GROUP + ":" + NAME + ":" + VERSION);
@@ -210,7 +210,6 @@ public class MinecraftUserRepo extends BaseRepo {
         }
 
         Map<String, String> tokens = new HashMap<>();
-        tokens.put("assets_root", downloadAssets.getOutput().getAbsolutePath());
         tokens.put("natives", extractNatives.getOutput().getAbsolutePath());
         tokens.put("mc_version", mcp.getMCVersion());
         tokens.put("mcp_version", mcp.getArtifact().getVersion());
