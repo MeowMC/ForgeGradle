@@ -27,7 +27,7 @@ import javax.annotation.Nonnull;
 
 public class UserDevExtension extends MinecraftExtension {
 
-    public static final String EXTENSION_NAME = "minecraft";
+    public static final String EXTENSION_NAME = "minecraft2";
 
     public UserDevExtension(@Nonnull final Project project) {
         super(project);
