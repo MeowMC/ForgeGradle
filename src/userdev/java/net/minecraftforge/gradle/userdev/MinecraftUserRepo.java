@@ -175,7 +175,7 @@ public class MinecraftUserRepo extends BaseRepo {
         return project.file("build/fg_cache/");
     }
 
-    public void validate(Configuration cfg, Map<String, RunConfig> runs, ExtractNatives extractNatives GenerateSRG createSrgToMcp) {
+    public void validate(Configuration cfg, Map<String, RunConfig> runs, ExtractNatives extractNatives, GenerateSRG createSrgToMcp) {
         getParents();
         if (mcp == null)
             throw new IllegalStateException("Invalid minecraft dependency: " + GROUP + ":" + NAME + ":" + VERSION);
