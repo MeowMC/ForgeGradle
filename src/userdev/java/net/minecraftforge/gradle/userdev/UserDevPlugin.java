@@ -62,7 +62,6 @@ public class UserDevPlugin implements Plugin<Project> {
 
         @SuppressWarnings("unused")
         final Logger logger = project.getLogger();
-        final UserDevExtension extension = project.getExtensions().create(UserDevExtension.EXTENSION_NAME, UserDevExtension.class, project);
 
         if (project.getPluginManager().findPlugin("java") == null) {
             project.getPluginManager().apply("java");
