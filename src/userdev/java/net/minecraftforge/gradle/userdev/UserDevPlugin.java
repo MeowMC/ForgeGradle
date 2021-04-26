@@ -69,6 +69,7 @@ public class UserDevPlugin implements Plugin<Project> {
             project.getPluginManager().apply("java");
         }
         final File nativesFolder = project.file("build/natives/");
+        final UserDevExtension extension = project.getExtensions().create(UserDevExtension.EXTENSION_NAME, UserDevExtension.class, project);
 
         NamedDomainObjectContainer<RenameJarInPlace> reobf = project.container(RenameJarInPlace.class, jarName -> {
             String name = Character.toUpperCase(jarName.charAt(0)) + jarName.substring(1);
