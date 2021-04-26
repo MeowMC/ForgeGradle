@@ -102,7 +102,7 @@ public class UserDevPlugin implements Plugin<Project> {
         });
         project.getExtensions().add("reobf", reobf);
 
-        Configuration minecraft = project.getConfigurations().maybeCreate(MINECRAFT);
+        Configuration minecraft1 = project.getConfigurations().maybeCreate(MINECRAFT);
         for (String cfg : new String[] {"compile", "implementation"}) {
             Configuration c = project.getConfigurations().findByName(cfg);
             if (c != null)
