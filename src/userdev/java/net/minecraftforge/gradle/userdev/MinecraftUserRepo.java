@@ -344,7 +344,7 @@ public class MinecraftUserRepo extends BaseRepo {
                     classifier = "userdev3";
             }
 
-            String artifact = isPatcher ? (GROUP + ":" + NAME +":" + VERSION + ':' + classifier) :
+            String artifact = isPatcher ? (GROUP + ":" + NAME +":" + VERSION) :
                                         ("de.oceanlabs.mcp:mcp_config:" + VERSION + "@zip");
             boolean patcher = isPatcher;
             Patcher last = null;
